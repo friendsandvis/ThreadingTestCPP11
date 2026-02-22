@@ -2,6 +2,7 @@
 
 string SharedLockingTest::m_sharedResource;
 mutex SharedLockingTest::m_sharedResourceMutex_simple;
+shared_mutex SharedLockingTest::m_sharedResourceMutex_shared;
 void SharedLockingTest::Run()
 {
 	const unsigned int numReaderThreads = 30;
@@ -23,13 +24,21 @@ void SharedLockingTest::Run()
 }
 void SharedLockingTest::ModifySharedResource()
 {
-	//lock_guard<mutex> lock_lockGuard(m_sharedResourceMutex_simple);
+	unique_lock<shared_mutex> lock_uniqueLock(m_sharedResourceMutex_shared, std::defer_lock);
+	if (!lock_uniqueLock.try_lock())
+	{
+		//not able to lock print
+	}
 	m_sharedResource = "Modified";
 	//cout << "Shared resource modified" << '\n';
 }
 void SharedLockingTest::AccessSharedResource()
 {
-	//lock_guard<mutex> lock_lockGuard(m_sharedResourceMutex_simple);
+	shared_lock<shared_mutex> lock_sharedLock(m_sharedResourceMutex_shared, std::defer_lock);
+	if (!lock_sharedLock.try_lock())
+	{
+		//not able to lock print
+	}
 	//cout << "Shared resource reading start" << '\n';
 	this_thread::sleep_for(chrono::seconds(1));
 	//cout << "Shared resource reading end" << '\n';
