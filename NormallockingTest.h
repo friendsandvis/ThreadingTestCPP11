@@ -3,9 +3,9 @@
 #include<string>
 #include<mutex>
 #include<vector>
-
+#include<chrono>
 #include<iostream>
-class SharedLockingTest: public ThreadTest
+class NormalLockingTest: public ThreadTest
 {
 public:
 	void Run() override;

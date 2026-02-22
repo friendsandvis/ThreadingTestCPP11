@@ -125,10 +125,12 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SharedlockingTest.cpp" />
+    <ClCompile Include="NormallockingTest.cpp" />
     <ClCompile Include="ThreadTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SharedlockingTest.h" />
+    <ClInclude Include="NormallockingTest.h" />
     <ClInclude Include="ThreadTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

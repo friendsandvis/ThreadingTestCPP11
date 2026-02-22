@@ -1,19 +1,19 @@
-#include"SharedlockingTest.h"
+#include"NormallockingTest.h"
 
-string SharedLockingTest::m_sharedResource;
-mutex SharedLockingTest::m_sharedResourceMutex_simple;
-void SharedLockingTest::Run()
+string NormalLockingTest::m_sharedResource;
+mutex NormalLockingTest::m_sharedResourceMutex_simple;
+void NormalLockingTest::Run()
 {
-	const unsigned int numReaderThreads = 30;
+	const unsigned int numReaderThreads = 10;
 	const unsigned int numWriterThreads = 1;
 	for (unsigned int i = 0; i < numWriterThreads; i++)
 	{
-		thread writerThread(SharedLockingTest::ModifySharedResource);
+		thread writerThread(NormalLockingTest::ModifySharedResource);
 		m_threadsInAction.push_back(move(writerThread));
 	}
 	for (unsigned int i = 0; i < numReaderThreads; i++)
 	{
-		thread readerThread(SharedLockingTest::AccessSharedResource);
+		thread readerThread(NormalLockingTest::AccessSharedResource);
 		m_threadsInAction.push_back(move(readerThread));
 	}
 	for (auto& aThread : m_threadsInAction)
@@ -21,15 +21,15 @@ void SharedLockingTest::Run()
 		aThread.join();
 	}
 }
-void SharedLockingTest::ModifySharedResource()
+void NormalLockingTest::ModifySharedResource()
 {
-	//lock_guard<mutex> lock_lockGuard(m_sharedResourceMutex_simple);
+	lock_guard<mutex> lock_lockGuard(m_sharedResourceMutex_simple);
 	m_sharedResource = "Modified";
 	//cout << "Shared resource modified" << '\n';
 }
-void SharedLockingTest::AccessSharedResource()
+void NormalLockingTest::AccessSharedResource()
 {
-	//lock_guard<mutex> lock_lockGuard(m_sharedResourceMutex_simple);
+	lock_guard<mutex> lock_lockGuard(m_sharedResourceMutex_simple);
 	//cout << "Shared resource reading start" << '\n';
 	this_thread::sleep_for(chrono::seconds(1));
 	//cout << "Shared resource reading end" << '\n';

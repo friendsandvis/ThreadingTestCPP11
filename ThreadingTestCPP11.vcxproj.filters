@@ -24,12 +24,18 @@
     <ClCompile Include="SharedlockingTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NormallockingTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SharedlockingTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ThreadTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NormallockingTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
