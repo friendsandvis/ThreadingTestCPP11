@@ -7,6 +7,9 @@ int main()
 	cout << "Treading Test to run:\n";
 	cout << "1. ReaderWriter_sharedMutexTest\n";
 	cout << "2. ReaderWriter_normalMutexTest\n";
+	cout << "3. dining philosopher problem dead lock test\n";
+	cout << "4. dining philosopher problem live lock test\n";
+	cout << "4. dining philosopher problem dead lock fix.\n";
 	cout << "Please input the test number to run:\n";
 	int testNum;
 	ThreadTest* Threadtest = nullptr;
