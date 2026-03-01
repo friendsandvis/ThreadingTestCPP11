@@ -123,12 +123,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DiningPhilosopherTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SharedlockingTest.cpp" />
     <ClCompile Include="NormallockingTest.cpp" />
     <ClCompile Include="ThreadTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DiningPhilosopherTest.h" />
     <ClInclude Include="SharedlockingTest.h" />
     <ClInclude Include="NormallockingTest.h" />
     <ClInclude Include="ThreadTest.h" />
