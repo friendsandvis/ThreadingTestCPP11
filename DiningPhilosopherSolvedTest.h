@@ -1,15 +1,16 @@
 #pragma once
 #include "DiningPhilosopherTestCommon.h"
-class DiningPhilosopherTest : public ThreadTest
+class DiningPhilosopherSolvedTest : public ThreadTest
 {
 public:
 	struct Philosopher
 	{
-		Philosopher(std::string name,int leftForkId, int rightForkId) : 
+		Philosopher(std::string name, int leftForkId, int rightForkId) :
 			name(name),
 			leftForkIdx(leftForkId),
 			rightForkIdx(rightForkId)
-		{}
+		{
+		}
 		string name;
 		int EatedCount = 0;
 		int leftForkIdx;
@@ -17,14 +18,6 @@ public:
 	};
 	struct Fork
 	{
-		Fork() = default;
-		Fork(string forkName)
-		:name(forkName)
-		{}
-		Fork(const char* forkName)
-			:name(forkName)
-		{
-		}
 		void SetName(string forkName)
 		{
 			name = forkName;
@@ -35,9 +28,10 @@ public:
 	};
 	void Run() override;
 	static void PhilosopherTryEatBasic(const int philosepherIdx);
+	static void PhilosopherTryEatLockBothForkTogether(const int philosepherIdx);
 private:
 	static void PhilosopherWork(const int philosepherIdx);
 	static vector<Philosopher> philosophers;
-	static array<Fork,NUMFORKS> forks;
+	static array<Fork, NUMFORKS> forks;
 	vector<thread> m_philosopherAtWork;
 };

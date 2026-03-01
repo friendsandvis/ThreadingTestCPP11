@@ -2,6 +2,7 @@
 #include"SharedlockingTest.h"
 #include"NormallockingTest.h"
 #include"DiningPhilosopherTest.h"
+#include"DiningPhilosopherSolvedTest.h"
 
 int main()
 {
@@ -10,7 +11,7 @@ int main()
 	cout << "2. ReaderWriter_normalMutexTest\n";
 	cout << "3. dining philosopher problem dead lock test\n";
 	cout << "4. dining philosopher problem live lock test\n";
-	cout << "5. dining philosopher problem dead lock fix.\n";
+	cout << "5. dining philosopher problem dead lock fix pick fork together.\n";
 	cout << "Please input the test number to run:\n";
 	int testNum;
 	ThreadTest* Threadtest = nullptr;
@@ -26,7 +27,7 @@ int main()
 	case 4:
 		Threadtest = new NormalLockingTest(); break;
 	case 5:
-		Threadtest = new NormalLockingTest(); break;
+		Threadtest = new DiningPhilosopherSolvedTest(); break;
 	}
 	if (Threadtest)
 	{
