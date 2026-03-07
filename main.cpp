@@ -3,6 +3,7 @@
 #include"NormallockingTest.h"
 #include"DiningPhilosopherTest.h"
 #include"DiningPhilosopherSolvedTest.h"
+#include"DiningPhilosopherLivelockTest.h"
 
 int main()
 {
@@ -25,7 +26,7 @@ int main()
 	case 3:
 		Threadtest = new DiningPhilosopherTest(); break;
 	case 4:
-		Threadtest = new NormalLockingTest(); break;
+		Threadtest = new DiningPhilosopherLiveLockTest(); break;
 	case 5:
 		Threadtest = new DiningPhilosopherSolvedTest(); break;
 	}

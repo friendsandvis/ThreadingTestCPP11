@@ -33,6 +33,9 @@
     <ClCompile Include="DiningPhilosopherSolvedTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DiningPhilosopherLivelockTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SharedlockingTest.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DiningPhilosopherTestCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DiningPhilosopherLivelockTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
