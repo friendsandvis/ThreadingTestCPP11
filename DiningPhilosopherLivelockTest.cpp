@@ -99,18 +99,22 @@ void DiningPhilosopherLiveLockTest::PhilosopherEatLivelocked(const int philoseph
 	while (!rightForkLocked)
 	{
 		//lock left fork
-		if(leftFork.m.try_lock())
+		leftFork.m.lock();
 		{
 			lock_guard<mutex> printLock(printMtx);
 			std::cout << philosopher.name << " locked left fork" << '\n';
 		}
 		leftForkLocked = true;
 		//try locking right fork too
-		if (rightFork.m.try_lock())
+		if (rightForkLocked = rightFork.m.try_lock())
 		{
 			lock_guard<mutex> printLock(printMtx);
-			std::cout << philosopher.name << " locked right fork" << '\n';
-			rightForkLocked = true;
+			std::cout << philosopher.name << " eating" << '\n';
+			//eatiing so drop both fork after eating
+			leftFork.m.unlock();
+			leftForkLocked = false;
+			rightFork.m.unlock();
+			rightForkLocked = false;
 		}
 		else
 		{
