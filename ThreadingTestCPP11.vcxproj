@@ -126,6 +126,7 @@
     <ClCompile Include="DiningPhilosopherLivelockTest.cpp" />
     <ClCompile Include="DiningPhilosopherSolvedTest.cpp" />
     <ClCompile Include="DiningPhilosopherTest.cpp" />
+    <ClCompile Include="DownloadThreadCoordinationTest.cpp" />
     <ClCompile Include="LiveLockTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SharedlockingTest.cpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="DiningPhilosopherSolvedTest.h" />
     <ClInclude Include="DiningPhilosopherTest.h" />
     <ClInclude Include="DiningPhilosopherTestCommon.h" />
+    <ClInclude Include="DownloadThreadCoordinationTest.h" />
     <ClInclude Include="LivelockTest.h" />
     <ClInclude Include="SharedlockingTest.h" />
     <ClInclude Include="NormallockingTest.h" />

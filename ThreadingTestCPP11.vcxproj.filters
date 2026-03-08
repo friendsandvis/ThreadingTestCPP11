@@ -39,6 +39,9 @@
     <ClCompile Include="LiveLockTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DownloadThreadCoordinationTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SharedlockingTest.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LivelockTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DownloadThreadCoordinationTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

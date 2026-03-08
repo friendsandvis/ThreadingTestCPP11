@@ -5,6 +5,7 @@
 #include"DiningPhilosopherTest.h"
 #include"DiningPhilosopherSolvedTest.h"
 #include"DiningPhilosopherLivelockTest.h"
+#include"DownloadThreadCoordinationTest.h"
 
 int main()
 {
@@ -15,6 +16,7 @@ int main()
 	cout << "4. dining philosopher problem live lock test\n";
 	cout << "5. dining philosopher problem dead lock fix pick fork together.\n";
 	cout << "6. live lock simple test.\n";
+	cout << "7. downloading thread coordination simple test.\n";
 	cout << "Please input the test number to run:\n";
 	int testNum;
 	ThreadTest* Threadtest = nullptr;
@@ -33,6 +35,8 @@ int main()
 		Threadtest = new DiningPhilosopherSolvedTest(); break;
 	case 6:
 		Threadtest = new LiveLockTest(); break;
+	case 7:
+		Threadtest = new DownloadThreadCoordinationTest(); break;
 	}
 	if (Threadtest)
 	{
