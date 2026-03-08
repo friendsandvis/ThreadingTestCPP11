@@ -35,6 +35,10 @@ void DownloadThreadCoordinationTest::DownloadWork()
 		this_thread::sleep_for(chrono::milliseconds(2));
 	}
 	downloadComplete = true;
+	{
+		lock_guard<mutex> printLock(printMtx);
+		cout << "downloading end\n";
+	}
 }
 void DownloadThreadCoordinationTest::ProgressBarWork()
 {
@@ -65,6 +69,10 @@ void DownloadThreadCoordinationTest::ProgressBarWork()
 						lock_guard<mutex> printLock(printMtx);
 						cout << "progress update:::Downloaded size:- " << downloadedSize << " bytes\n";
 		}
+	}
+	{
+		lock_guard<mutex> printLock(printMtx);
+		cout << "progress bar end\n";
 	}
 }
 void DownloadThreadCoordinationTest::ProcessDownloaddedWork()
