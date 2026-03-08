@@ -18,17 +18,16 @@ void LiveLockTest::UserWorkA()
 {
 	bool mtx2Locked = false;
 	bool mtx1Locked = false;
-
+	//lock mtx 1
+	mtx1.lock();
+	{
+		mtx1Locked = true;
+		{
+			cout << "worker A locked Mutex 1\n";
+		}
+	}
 	while (!mtx2Locked)
 	{
-		//lock mtx 1
-			mtx1.lock();
-		{
-			mtx1Locked = true;
-			{
-				cout << "worker A locked Mutex 1\n";
-			}
-		}
 		this_thread::sleep_for(chrono::milliseconds(100));
 		//try lock mtx 2
 		{
@@ -39,17 +38,6 @@ void LiveLockTest::UserWorkA()
 			if (mtx1Locked)
 			{
 				cout << "worker A can work. \n";
-			}
-		}
-		else
-		{
-			if (mtx1Locked)
-			{
-				mtx1.unlock();
-				mtx1Locked = false;
-				{
-					cout << "worker A locked Mutex 1  but not mutex 2 so release mutex 1\n";
-				}
 			}
 		}
 	}
@@ -69,15 +57,14 @@ void LiveLockTest::UserWorkB()
 {
 	bool mtx2Locked = false;
 	bool mtx1Locked = false;
-
+	//lock mtx 2
+	mtx2.lock();
+	{
+		mtx2Locked = true;
+		cout << "Worker B locked mutex 2\n";
+	}
 	while (!mtx1Locked)
 	{
-		//lock mtx 2
-		mtx2.lock();
-		{
-			mtx2Locked = true;
-			cout << "Worker B locked mutex 2\n";
-		}
 		this_thread::sleep_for(chrono::milliseconds(10));
 		//try lock mtx 1
 		{
@@ -88,15 +75,6 @@ void LiveLockTest::UserWorkB()
 			if (mtx2Locked)
 			{
 				cout << "Worker B can work\n";
-			}
-		}
-		else
-		{
-			if (mtx2Locked)
-			{
-				mtx2.unlock();
-				mtx2Locked = false;
-				cout << "Worker B locked mutex 2 but not mutex 1 so release mutex 2\n";
 			}
 		}
 	}
