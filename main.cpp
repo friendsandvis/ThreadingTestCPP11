@@ -6,6 +6,7 @@
 #include"DiningPhilosopherSolvedTest.h"
 #include"DiningPhilosopherLivelockTest.h"
 #include"DownloadThreadCoordinationTest.h"
+#include"ConditionVariableTest.h"
 
 int main()
 {
@@ -17,6 +18,7 @@ int main()
 	cout << "5. dining philosopher problem dead lock fix pick fork together.\n";
 	cout << "6. live lock simple test.\n";
 	cout << "7. downloading thread coordination simple test.\n";
+	cout << "8. condition variable test.\n";
 	cout << "Please input the test number to run:\n";
 	int testNum;
 	ThreadTest* Threadtest = nullptr;
@@ -37,6 +39,8 @@ int main()
 		Threadtest = new LiveLockTest(); break;
 	case 7:
 		Threadtest = new DownloadThreadCoordinationTest(); break;
+	case 8:
+		Threadtest = new ConditionVariableTest(); break;
 	}
 	if (Threadtest)
 	{

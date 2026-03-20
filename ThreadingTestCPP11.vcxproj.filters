@@ -42,6 +42,9 @@
     <ClCompile Include="DownloadThreadCoordinationTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ConditionVariableTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SharedlockingTest.h">
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DownloadThreadCoordinationTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConditionVariableTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
