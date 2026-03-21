@@ -4,15 +4,16 @@ string DownloadConditionVariableTest::downloadedData;
 mutex DownloadConditionVariableTest::downloadingDataMtx;
 mutex DownloadConditionVariableTest::downloadingCompleteMtx;
 mutex DownloadConditionVariableTest::printMtx;
-bool DownloadConditionVariableTest::downloadComplete;
+condition_variable DownloadConditionVariableTest::downloadCompleteConditionVar;
+condition_variable DownloadConditionVariableTest::downloadDataUpdatedConditionVar;
 bool DownloadConditionVariableTest::downloadDataUpdated;
-
+bool DownloadConditionVariableTest::downloadCompleted;
 void DownloadConditionVariableTest::Run()
 {
 	//init
 	downloadedData = "";
-	downloadComplete = false;
-	downloadComplete = false;
+	downloadCompleted = false;
+	downloadDataUpdated = false;
 	thread downloadThread(DownloadWork);
 	m_threadsInAction.push_back(move(downloadThread));
 	thread progressBarThread(ProgressBarWork);
@@ -26,15 +27,19 @@ void DownloadConditionVariableTest::Run()
 }
 void DownloadConditionVariableTest::DownloadWork()
 {
-	const int maxDownloadCycles = 20;
+	const int maxDownloadCycles = 200;
 	for (int i = 0; i < maxDownloadCycles; i++)
 	{
 		lock_guard<mutex> downloadDataLock(downloadingDataMtx);
 		downloadedData += "data chunk " + to_string(i);
+		//nortify download progress
 		downloadDataUpdated = true;
-		this_thread::sleep_for(chrono::milliseconds(2));
+		downloadDataUpdatedConditionVar.notify_all();
+		this_thread::sleep_for(chrono::milliseconds(1));
 	}
-	downloadComplete = true;
+	//nortify download complete condition
+	downloadCompleted = true;
+	downloadCompleteConditionVar.notify_all();
 	{
 		lock_guard<mutex> printLock(printMtx);
 		cout << "downloading end\n";
@@ -42,33 +47,32 @@ void DownloadConditionVariableTest::DownloadWork()
 }
 void DownloadConditionVariableTest::ProgressBarWork()
 {
-	bool progressBarRunning = true;
+	const bool progressBarRunning = true;
 	int downloadedSize = 0;
 	//start progressbar loop
 	while (progressBarRunning)
 	{
 		//wait for download to be updated
 		unique_lock<mutex> downloadDataLock(downloadingDataMtx);
-		while (!downloadDataUpdated)
-		{
-			//unloack and sleep to give room to download
-			downloadDataLock.unlock();
-			this_thread::sleep_for(chrono::milliseconds(2));
-			//lock as we check condition again
-			downloadDataLock.lock();
-		}
+		downloadDataUpdatedConditionVar.wait(downloadDataLock, []() {return downloadDataUpdated; });
 		//download updated so update progress as well
 		downloadedSize = downloadedData.size();
 		{
-			lock_guard<mutex> downloadcompleteLock(downloadingCompleteMtx);
-			progressBarRunning = !downloadComplete;
+			unique_lock<mutex> downloadcompleteLock(downloadingCompleteMtx);
+			//wait on a condition variable to check if download completed or not and break out of progress bar loop accordingly
+			if (downloadCompleteConditionVar.wait_for(downloadcompleteLock,chrono::milliseconds(10), []() {return downloadCompleted; }))
+			{
+				//download completed so break out of progress loop.
+				break;
+			}
 		}
-		downloadDataUpdated = false;
+		
 		//print progress
 		{
 			lock_guard<mutex> printLock(printMtx);
 			cout << "progress update:::Downloaded size:- " << downloadedSize << " bytes\n";
 		}
+		downloadDataUpdated = false;
 	}
 	{
 		lock_guard<mutex> printLock(printMtx);
@@ -79,14 +83,8 @@ void DownloadConditionVariableTest::ProcessDownloaddedWork()
 {
 	string downloadedDataCopy;
 	unique_lock<mutex> downloadCompleteLock(downloadingCompleteMtx);
-	while (!downloadComplete)
-	{
-		//unloack and sleep to give room to download
-		downloadCompleteLock.unlock();
-		this_thread::sleep_for(chrono::milliseconds(1));
-		//lock as we check condition again
-		downloadCompleteLock.lock();
-	}
+	//wait safly for download complete
+	downloadCompleteConditionVar.wait(downloadCompleteLock, []() {return downloadCompleted; });
 	//download complete process
 	{
 		lock_guard<mutex> dataLock(downloadingDataMtx);

@@ -7,6 +7,7 @@
 #include"DiningPhilosopherLivelockTest.h"
 #include"DownloadThreadCoordinationTest.h"
 #include"ConditionVariableTest.h"
+#include"DownloadConditionVariableTest.h"
 
 int main()
 {
@@ -19,6 +20,7 @@ int main()
 	cout << "6. live lock simple test.\n";
 	cout << "7. downloading thread coordination simple test.\n";
 	cout << "8. condition variable test.\n";
+	cout << "9. downloading thread coordination with condition variable test.\n";
 	cout << "Please input the test number to run:\n";
 	int testNum;
 	ThreadTest* Threadtest = nullptr;
@@ -41,6 +43,8 @@ int main()
 		Threadtest = new DownloadThreadCoordinationTest(); break;
 	case 8:
 		Threadtest = new ConditionVariableTest(); break;
+	case 9:
+		Threadtest = new DownloadConditionVariableTest(); break;
 	}
 	if (Threadtest)
 	{

@@ -4,7 +4,7 @@
 #include<shared_mutex>
 #include<mutex>
 #include<vector>
-
+#include<condition_variable>
 #include<iostream>
 class DownloadConditionVariableTest : public ThreadTest
 {
@@ -17,8 +17,10 @@ private:
 	static mutex downloadingDataMtx;
 	static mutex downloadingCompleteMtx;
 	static mutex printMtx;
-	static bool downloadComplete;
+	static condition_variable downloadCompleteConditionVar;
+	static condition_variable downloadDataUpdatedConditionVar;
 	static bool downloadDataUpdated;
+	static bool downloadCompleted;
 	static string downloadedData;
 
 	vector<thread> m_threadsInAction;
