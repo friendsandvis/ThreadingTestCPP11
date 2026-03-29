@@ -8,6 +8,7 @@
 #include"DownloadThreadCoordinationTest.h"
 #include"ConditionVariableTest.h"
 #include"DownloadConditionVariableTest.h"
+#include"FuturePromiseTest.h"
 
 int main()
 {
@@ -21,6 +22,7 @@ int main()
 	cout << "7. downloading thread coordination simple test.\n";
 	cout << "8. condition variable test.\n";
 	cout << "9. downloading thread coordination with condition variable test.\n";
+	cout << "10. downloading future promise test.\n";
 	cout << "Please input the test number to run:\n";
 	int testNum;
 	ThreadTest* Threadtest = nullptr;
@@ -45,6 +47,8 @@ int main()
 		Threadtest = new ConditionVariableTest(); break;
 	case 9:
 		Threadtest = new DownloadConditionVariableTest(); break;
+	case 10:
+		Threadtest = new FuturePromiseTest(); break;
 	}
 	if (Threadtest)
 	{

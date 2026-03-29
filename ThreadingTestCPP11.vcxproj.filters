@@ -48,6 +48,9 @@
     <ClCompile Include="DownloadConditionVariableTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FuturePromiseTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SharedlockingTest.h">
@@ -81,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DownloadConditionVariableTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FuturePromiseTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
