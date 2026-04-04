@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AtomicOperationTest.cpp" />
     <ClCompile Include="ConditionVariableTest.cpp" />
     <ClCompile Include="DiningPhilosopherLivelockTest.cpp" />
     <ClCompile Include="DiningPhilosopherSolvedTest.cpp" />
@@ -137,6 +138,7 @@
     <ClCompile Include="ThreadTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AtomicOperationTest.h" />
     <ClInclude Include="ConditionVariableTest.h" />
     <ClInclude Include="DiningPhilosopherLivelockTest.h" />
     <ClInclude Include="DiningPhilosopherSolvedTest.h" />

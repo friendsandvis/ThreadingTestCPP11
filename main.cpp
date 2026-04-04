@@ -9,6 +9,7 @@
 #include"ConditionVariableTest.h"
 #include"DownloadConditionVariableTest.h"
 #include"FuturePromiseTest.h"
+#include"AtomicOperationTest.h"
 
 int main()
 {
@@ -23,6 +24,7 @@ int main()
 	cout << "8. condition variable test.\n";
 	cout << "9. downloading thread coordination with condition variable test.\n";
 	cout << "10. downloading future promise test.\n";
+	cout << "11. atomic operation test.\n";
 	cout << "Please input the test number to run:\n";
 	int testNum;
 	ThreadTest* Threadtest = nullptr;
@@ -49,6 +51,8 @@ int main()
 		Threadtest = new DownloadConditionVariableTest(); break;
 	case 10:
 		Threadtest = new FuturePromiseTest(); break;
+	case 11:
+		Threadtest = new AtomicOperationTest(); break;
 	}
 	if (Threadtest)
 	{
