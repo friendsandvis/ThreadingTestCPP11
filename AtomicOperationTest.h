@@ -5,6 +5,7 @@
 #include<mutex>
 #include<vector>
 #include<iostream>
+#include<atomic>
 class AtomicOperationTest : public ThreadTest
 {
 public:
@@ -14,4 +15,6 @@ private:
 	static void ThreadWork2();
 	static mutex printMtx;
 	vector<thread> m_threadsInAction;
+	static unsigned int m_sharedValue;
+	static atomic<unsigned int> m_sharedValue_atomicVar;
 };
