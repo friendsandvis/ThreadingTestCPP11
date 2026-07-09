@@ -11,6 +11,7 @@
 #include"FuturePromiseTest.h"
 #include"AtomicOperationTest.h"
 #include"PackedTaskTest.h"
+#include"SemaphoreTest.h"
 
 int main()
 {
@@ -27,6 +28,7 @@ int main()
 	cout << "10. downloading future promise test.\n";
 	cout << "11. atomic operation test.\n";
 	cout << "12. packed task test.\n";
+	cout << "13. semaphore test.\n";
 	cout << "Please input the test number to run:\n";
 	int testNum;
 	ThreadTest* Threadtest = nullptr;
@@ -57,6 +59,8 @@ int main()
 		Threadtest = new AtomicOperationTest(); break;
 	case 12:
 		Threadtest = new PackedTaskTest(); break;
+	case 13:
+		Threadtest = new SemaphoreTest(); break;
 	}
 	if (Threadtest)
 	{

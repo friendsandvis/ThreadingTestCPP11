@@ -134,6 +134,7 @@
     <ClCompile Include="LiveLockTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PackedTaskTest.cpp" />
+    <ClCompile Include="SemaphoreTest.cpp" />
     <ClCompile Include="SharedlockingTest.cpp" />
     <ClCompile Include="NormallockingTest.cpp" />
     <ClCompile Include="ThreadTest.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="FuturePromiseTest.h" />
     <ClInclude Include="LivelockTest.h" />
     <ClInclude Include="PackedTaskTest.h" />
+    <ClInclude Include="SemaphoreTest.h" />
     <ClInclude Include="SharedlockingTest.h" />
     <ClInclude Include="NormallockingTest.h" />
     <ClInclude Include="ThreadTest.h" />
