@@ -12,6 +12,8 @@
 #include"AtomicOperationTest.h"
 #include"PackedTaskTest.h"
 #include"SemaphoreTest.h"
+#include"QueueTest.h"
+#include"ThreadPoolTest.h"
 
 int main()
 {
@@ -29,6 +31,8 @@ int main()
 	cout << "11. atomic operation test.\n";
 	cout << "12. packed task test.\n";
 	cout << "13. semaphore test.\n";
+	cout << "14. queue test.\n";
+	cout << "15. threadpool test.\n";
 	cout << "Please input the test number to run:\n";
 	int testNum;
 	ThreadTest* Threadtest = nullptr;
@@ -61,6 +65,10 @@ int main()
 		Threadtest = new PackedTaskTest(); break;
 	case 13:
 		Threadtest = new SemaphoreTest(); break;
+	case 14:
+		Threadtest = new QueueTest(); break;
+	case 15:
+		Threadtest = new ThreadPoolTest(); break;
 	}
 	if (Threadtest)
 	{
