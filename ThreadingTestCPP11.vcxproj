@@ -158,6 +158,7 @@
     <ClInclude Include="SharedlockingTest.h" />
     <ClInclude Include="NormallockingTest.h" />
     <ClInclude Include="ThreadPoolTest.h" />
+    <ClInclude Include="ThreadSafeQueue.h" />
     <ClInclude Include="ThreadTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
