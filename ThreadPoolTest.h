@@ -16,6 +16,7 @@ public:
 	ThreadPool(unsigned int numThreads = 1);
 	~ThreadPool();
 	void AddTask(Task aTask);
+	void AddTaskToThread(Task aTask, unsigned int threadIDX);
 	void JoinAllThreads();
 
 private:
@@ -23,9 +24,11 @@ private:
 	unsigned int m_numThreads;
 	ThreadSafeQueue<Task>* m_taskQueue;
 	std::vector<std::thread> m_workerThreads;
-	unsigned selectedThreadTaskAdd = 0;
+	unsigned int selectedThreadTaskAdd = 0;
 
 	void WorkerFunction(unsigned int workerIDX);
+	bool WorkerThreadCanExit(unsigned int workerIDX);
+	bool HasOwnWorkRemaining(unsigned int workerIDX);
 };
 class ThreadPoolTest : public ThreadTest
 {
